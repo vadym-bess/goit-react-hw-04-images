@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import css from './ImageGalleryItem.module.css';
 
@@ -5,7 +6,8 @@ export const ImageGalleryItem = ({ pictures, onClickImg }) => {
   return pictures.map(picture => {
     return (
       <li className={css.ImageGalleryItem} key={picture.id}>
-        <img className={css.ImageGalleryItemImage}
+        <img
+          className={css.ImageGalleryItemImage}
           onClick={() => {
             onClickImg(picture.largeImageURL);
           }}
@@ -15,4 +17,9 @@ export const ImageGalleryItem = ({ pictures, onClickImg }) => {
       </li>
     );
   });
+};
+
+ImageGalleryItem.propTypes = {
+  pictures: PropTypes.array.isRequired,
+  onClickImg: PropTypes.func.isRequired,
 };

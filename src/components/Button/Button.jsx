@@ -5,10 +5,9 @@ export const Button = ({ onClick }) => {
   return (
     <div className={css.buttonThumb}>
       <button className={css.button} type="button" onClick={onClick}>
-      Load more
+        Load more
       </button>
     </div>
-    
   );
 };
 
