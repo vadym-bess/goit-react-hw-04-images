@@ -2,7 +2,13 @@ import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import css from './Modal.module.css';
 
-export const Modal = ({ onClose }) => {
+export const Modal = ({ onClose, imgUrl }) => {
+  const handleKeydown = e => {
+    if (e.code === 'Escape') {
+      onClose();
+    }
+  };
+
   useEffect(() => {
     window.addEventListener('keydown', handleKeydown);
 
@@ -11,14 +17,8 @@ export const Modal = ({ onClose }) => {
     };
   });
 
-  const handleKeydown = event => {
-    if (event.code === 'Escape') {
-      onClose();
-    }
-  };
-
-  const handleBackdropClick = event => {
-    if (event.currentTarget === event.target) {
+  const handleBackdropClick = e => {
+    if (e.currentTarget === e.target) {
       onClose();
     }
   };
@@ -26,7 +26,7 @@ export const Modal = ({ onClose }) => {
   return (
     <div className={css.overlay} onClick={handleBackdropClick}>
       <div className={css.modal}>
-        <img src={this.props.imgUrl} alt="" />
+        <img src={imgUrl} alt="" />
       </div>
     </div>
   );
@@ -34,4 +34,5 @@ export const Modal = ({ onClose }) => {
 
 Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
+  imgUrl: PropTypes.string.isRequired,
 };
